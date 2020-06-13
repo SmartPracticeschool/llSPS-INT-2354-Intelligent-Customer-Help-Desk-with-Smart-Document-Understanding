@@ -1,0 +1,180 @@
+[
+    {
+        "id": "675b3a31.def114",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "8de0c04c.3c6d1",
+        "type": "ui_form",
+        "z": "675b3a31.def114",
+        "name": "Smart Watch Chatbot",
+        "label": "",
+        "group": "7a11e873.9818d8",
+        "order": 0,
+        "width": "6",
+        "height": "13",
+        "options": [
+            {
+                "label": "Enter your query",
+                "value": "text",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "text": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "Smart Watch Chatbot",
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "ecc58b5d.0b0008"
+            ]
+        ]
+    },
+    {
+        "id": "ecc58b5d.0b0008",
+        "type": "function",
+        "z": "675b3a31.def114",
+        "name": "input parsing",
+        "func": "msg.payload=msg.payload.text;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 270,
+        "y": 300,
+        "wires": [
+            [
+                "f568f617.34a3a8",
+                "7c9b8813.f43618"
+            ]
+        ]
+    },
+    {
+        "id": "f568f617.34a3a8",
+        "type": "ui_text",
+        "z": "675b3a31.def114",
+        "group": "7a11e873.9818d8",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "name": "",
+        "label": "Me",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 470,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "7c9b8813.f43618",
+        "type": "watson-conversation-v1",
+        "z": "675b3a31.def114",
+        "name": "Smart Watch Chatbot",
+        "workspaceid": "1a22641d-c49f-40c9-b578-b32f6cc6037a",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "service-endpoint": "https://api.eu-gb.assistant.watson.cloud.ibm.com/instances/3b691979-1f3e-4d35-8942-bced35ffc07b",
+        "timeout": "",
+        "optout-learning": false,
+        "x": 560,
+        "y": 220,
+        "wires": [
+            [
+                "2c83b9b5.e8d806",
+                "4a28b06a.56991"
+            ]
+        ]
+    },
+    {
+        "id": "2c83b9b5.e8d806",
+        "type": "debug",
+        "z": "675b3a31.def114",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 770,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "4a28b06a.56991",
+        "type": "function",
+        "z": "675b3a31.def114",
+        "name": "parsing",
+        "func": "msg.payload=msg.payload.output.generic[0].text;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 660,
+        "y": 300,
+        "wires": [
+            [
+                "1adf6d16.133b63",
+                "949ebc72.ba5af"
+            ]
+        ]
+    },
+    {
+        "id": "1adf6d16.133b63",
+        "type": "ui_text",
+        "z": "675b3a31.def114",
+        "group": "7a11e873.9818d8",
+        "order": 2,
+        "width": "6",
+        "height": "5",
+        "name": "",
+        "label": "Bot",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 870,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "949ebc72.ba5af",
+        "type": "debug",
+        "z": "675b3a31.def114",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 860,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "7a11e873.9818d8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Chatbot",
+        "tab": "af28c11.ce0c04",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "af28c11.ce0c04",
+        "type": "ui_tab",
+        "z": "",
+        "name": "BotHome",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
